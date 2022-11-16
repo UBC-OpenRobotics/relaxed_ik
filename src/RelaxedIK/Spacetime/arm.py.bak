@@ -1,7 +1,7 @@
 __author__ = 'gleicher'
 
 # stuff for doing articulated figures
-from . import robot_function
+import robot_function
 
 import math
 # import adInterface as AD
@@ -46,7 +46,7 @@ def rotMatrix(axis, s, c):
     elif axis=="X" or axis=="x":
         return N.array([[1,0,0,0], [0,c,-s,0], [0,s,c,0], [0,0,0,1]])
     else:
-        print("Unsupported Axis:", axis)
+        print "Unsupported Axis:", axis
         raise NotImplementedError
 
 '''
@@ -97,7 +97,7 @@ def rot3(axis, s, c):
     elif axis=="X" or axis=="x" or axis == '-x':
         return N.array([[1.0,0.0,0.0], [0.0,c,-s], [0.0,s,c] ])
     else:
-        print("Unsupported Axis:", axis)
+        print "Unsupported Axis:", axis
         raise NotImplementedError
 
 def eulerTupleTo3x3(t):
@@ -145,7 +145,7 @@ def rotTransMatrixNOAD(axis, s, c, t):
                         [0,s, c, s*t[1] + c * t[2]],
                         [0,0,0,1]])
     else:
-        print("Unsupported Axis:", axis)
+        print "Unsupported Axis:", axis
         raise NotImplementedError
 
 

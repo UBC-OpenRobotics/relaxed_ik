@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 '''
 author: Danny Rakita
 website: http://pages.cs.wisc.edu/~rakita/

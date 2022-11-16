@@ -1,10 +1,10 @@
 import fcl
 import numpy as np
 import yaml
-from .colors import bcolors as bc
+from colors import bcolors as bc
 from visualization_msgs.msg import Marker
 import rospy
-from . import transformations as T
+import transformations as T
 
 
 class Collision_Object_Container:
@@ -13,7 +13,7 @@ class Collision_Object_Container:
         f = open(yaml_path)
         y = yaml.load(f)
 
-        keys = list(y.keys())
+        keys = y.keys()
         for k in keys:
             if not y[k] == None:
                 if k == 'robot_link_radius' or k == 'sample_states': continue
@@ -50,8 +50,7 @@ class Collision_Object_Container:
         for i,c in enumerate(self.collision_objects):
             c.marker.id = i
 
-    def get_min_distance(self, xxx_todo_changeme):
-        (a, b) = xxx_todo_changeme
+    def get_min_distance(self, (a, b)):
         obja = self.collision_objects[a].obj
         objb = self.collision_objects[b].obj
 
@@ -348,7 +347,7 @@ class Collision_Mesh(Collision_Object):
         self.make_rviz_marker()
 
     def make_rviz_marker(self):
-        print(bc.WARNING + 'WARNING: Mesh collision object not supported in rviz visualization' + bc.ENDC)
+        print bc.WARNING + 'WARNING: Mesh collision object not supported in rviz visualization' + bc.ENDC
         self.marker.scale.x = 0.0001
         self.marker.scale.y = 0.0001
         self.marker.scale.z = 0.0001

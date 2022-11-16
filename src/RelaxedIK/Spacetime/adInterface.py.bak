@@ -33,7 +33,7 @@ def apply_chain_rule_noHess(ad_funcs, variables, lc_wrt_args, qc_wrt_args,
     grad = defaultdict(float)    
     for f,df in zip(ad_funcs, lc_wrt_args):
         try:
-            for fvar,fval in f._lc.items():
+            for fvar,fval in f._lc.iteritems():
                 grad[fvar] += df * fval
         except:
             pass
@@ -62,7 +62,7 @@ def fsum(list):
     if len(ads):
         grad = defaultdict(float)
         for f in ads:
-            for fvar,fval in f._lc.items():
+            for fvar,fval in f._lc.iteritems():
                 grad[fvar] += fval
         return ADF(val, grad, None, None)
     else:
@@ -88,10 +88,10 @@ def ADF_Mult(self,val):
     if dx or dy:
         grad = defaultdict(float)
         if dx:
-            for a,b in dx.items():
+            for a,b in dx.iteritems():
                 grad[a] = b * y
         if dy:
-            for a,b in dy.items():
+            for a,b in dy.iteritems():
                 grad[a] += b * x
         return ADF(x*y, grad, None, None)
     else:
@@ -113,9 +113,9 @@ def ADF_Add(self,val):
 
     if dx and dy:
         grad = defaultdict(float)
-        for a,b in dx.items():
+        for a,b in dx.iteritems():
             grad[a] = b
-        for a,b in dy.items():
+        for a,b in dy.iteritems():
             grad[a] += b
         return ADF(x+y, grad, None, None)
     elif dx:
@@ -141,9 +141,9 @@ def ADF_Sub(self,val):
 
     if dx and dy:
         grad = defaultdict(float)
-        for a,b in dx.items():
+        for a,b in dx.iteritems():
             grad[a] = b
-        for a,b in dy.items():
+        for a,b in dy.iteritems():
             grad[a] -= b
         return ADF(x-y, grad, None, None)
     elif dx:
@@ -186,10 +186,10 @@ def fastLC2(a1,t1,a2,t2):
     if dx or dy:
         grad = defaultdict(float)
         if dx:
-            for a,b in dx.items():
+            for a,b in dx.iteritems():
                 grad[a] = b * t1
         if dy:
-            for a,b in dy.items():
+            for a,b in dy.iteritems():
                 grad[a] += b * t2
         return ADF(t1*x + t2*y, grad, None, None)
     else:
