@@ -1,10 +1,12 @@
 __author__ = 'drakita'
 
 from abc import ABCMeta, abstractmethod
-from .objective import get_groove_global_vars
+from objective import get_groove_global_vars
 import scipy.optimize as O
 
-class Constraint(metaclass=ABCMeta):
+class Constraint:
+    __metaclass__ = ABCMeta
+
     def __init__(self, *args): pass
 
     @abstractmethod
@@ -22,7 +24,7 @@ class Constraint(metaclass=ABCMeta):
         numDOF = len(x)
         g = O.approx_fprime(x, self.func, numDOF * [0.001])
         if grad.size > 0:
-            for i in range(numDOF):
+            for i in xrange(numDOF):
                 grad[i] = -g[i]
         return -self.func(x)
 

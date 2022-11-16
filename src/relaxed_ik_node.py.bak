@@ -39,8 +39,8 @@ if __name__ == '__main__':
         header = eepg.header
         num_poses = len(pose_goals)
         if not num_poses == num_chains:
-            print(bcolors.FAIL + 'ERROR: Number of pose goals ({}) ' \
-                                 'not equal to the number of kinematic chains ({}).  Exiting relaxed_ik_node'.format(num_poses, num_chains))
+            print bcolors.FAIL + 'ERROR: Number of pose goals ({}) ' \
+                                 'not equal to the number of kinematic chains ({}).  Exiting relaxed_ik_node'.format(num_poses, num_chains)
             rospy.signal_shutdown()
 
         pos_goals = []

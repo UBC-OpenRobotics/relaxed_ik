@@ -1,4 +1,4 @@
-from . import arm
+import arm
 from ..Utils.transformations import quaternion_from_matrix
 
 class Robot:
@@ -65,7 +65,7 @@ class Robot:
     def split_state_into_subchains(self, x):
         subchains = []
 
-        for i in range(self.numChains):
+        for i in xrange(self.numChains):
             subchain = []
 
             for s in self.subchain_indices[i]:

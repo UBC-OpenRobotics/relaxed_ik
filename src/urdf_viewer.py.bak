@@ -48,6 +48,6 @@ if __name__ == '__main__':
                              fixed_frame)
 
         if not joint_state == None:
-            print('current joint state: ' + str(list(joint_state.position)))
+            print 'current joint state: ' + str(list(joint_state.position))
 
     rate.sleep()
