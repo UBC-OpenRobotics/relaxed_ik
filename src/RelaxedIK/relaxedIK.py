@@ -1,5 +1,5 @@
 from .GROOVE.groove import get_groove
-from . import Utils.transformations as T
+from RelaxedIK.Utils import transformations as T
 import math as M
 import numpy as np
 import numpy.random as r
@@ -32,7 +32,7 @@ class RelaxedIK(object):
         from RelaxedIK.GROOVE_RelaxedIK.relaxedIK_vars import RelaxedIK_vars
         dirname = os.path.dirname(__file__)
         path = os.path.join(dirname, 'Config/{}'.format(config_name))
-        file = open(path,'r')
+        file = open(path,'rb')
         self.config_data = joblib.load(file)
 
         self.robot_name = self.config_data[0]
