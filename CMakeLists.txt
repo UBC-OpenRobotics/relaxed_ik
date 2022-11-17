@@ -10,7 +10,12 @@ project(relaxed_ik)
 find_package(catkin REQUIRED COMPONENTS std_msgs message_generation geometry_msgs)
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(catkin REQUIRED COMPONENTS
+  rospy
+  std_msgs
+  geometry_msgs
+  message_generation
+)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -55,11 +60,10 @@ add_message_files(
 )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+   FILES
+   RelaxedIKService.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -122,8 +126,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-# ${catkin_INCLUDE_DIRS}
+    ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library

@@ -5,5 +5,5 @@
    <!-- ##################################################################################### -->
 
    <param name="config_file_name" value="$(arg config_file_name)"/>
-   <node pkg="relaxed_ik" type="relaxed_ik_node.py" name="relaxed_ik_node" />
+   <node pkg="relaxed_ik" type="relaxed_ik_service_node.py" name="relaxed_ik_service_node" />
 </launch>
