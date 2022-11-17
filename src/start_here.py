@@ -85,7 +85,7 @@ fixed_frame = 'ob1_arm_base_link'
 #                'LEFT_WRIST_PITCH', 'LEFT_WRIST_YAW_2'] ]
 #   example 2 shows what this would be for a single end-effector robot, specifically using the UR5 robot
 #   ex2: [ ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint'] ]
-joint_names = [ ['ob1_arm_base_shoulder_joint', 'ob1_arm_shoulder_arm_joint', 'ob1_arm_arm_elbow_joint', 'ob1_arm_elbow_forearm_joint', 'ob1_arm_forearm_gripper_joint', 'ob1_arm_gripper_eef_joint'], ['ob1_arm_gripper_lclaw_joint', 'ob1_arm_gripper_rclaw_joint'] ]
+joint_names = [ ['ob1_arm_base_shoulder_joint', 'ob1_arm_shoulder_arm_joint', 'ob1_arm_arm_elbow_joint', 'ob1_arm_elbow_forearm_joint', 'ob1_arm_forearm_gripper_joint', 'ob1_arm_gripper_eef_joint']]
 ######################################################################################################
 
 
@@ -105,7 +105,7 @@ joint_names = [ ['ob1_arm_base_shoulder_joint', 'ob1_arm_shoulder_arm_joint', 'o
 #   ex1: [ 'WAIST', 'RIGHT_SHOULDER_PITCH', 'RIGHT_SHOULDER_ROLL', 'RIGHT_SHOULDER_YAW', 'RIGHT_ELBOW', 'RIGHT_WRIST_YAW',
 #               'RIGHT_WRIST_PITCH', 'RIGHT_WRIST_YAW_2','LEFT_SHOULDER_PITCH', 'LEFT_SHOULDER_ROLL', 'LEFT_SHOULDER_YAW',
 #               'LEFT_ELBOW', 'LEFT_WRIST_YAW', 'LEFT_WRIST_PITCH', 'LEFT_WRIST_YAW_2' ]
-joint_ordering = ['ob1_arm_base_shoulder_joint', 'ob1_arm_shoulder_arm_joint', 'ob1_arm_arm_elbow_joint', 'ob1_arm_elbow_forearm_joint', 'ob1_arm_forearm_gripper_joint', 'ob1_arm_gripper_lclaw_joint', 'ob1_arm_gripper_rclaw_joint']
+joint_ordering = ['ob1_arm_base_shoulder_joint', 'ob1_arm_shoulder_arm_joint', 'ob1_arm_arm_elbow_joint', 'ob1_arm_elbow_forearm_joint', 'ob1_arm_forearm_gripper_joint']
 ######################################################################################################
 
 
@@ -196,7 +196,12 @@ starting_config = [0, 0, 0, 0, 0]
 # TODO: fill out this function, or leave it how it is for the default option
 from sensor_msgs.msg import JointState
 def joint_state_define(x):
-    return None
+    js = JointState()
+    js.name = joint_ordering + ['ob1_arm_gripper_lclaw_joint', 'ob1_arm_gripper_rclaw_joint']
+    js.position = len(js.name)*[0]
+    for i in range(len(x)):
+        js.position[i] = x[i]
+    return js
 
 ######################################################################################################
 
@@ -298,7 +303,7 @@ collision_file_name = 'ob1_arm_collision.yaml'
 #   RelaxedIK/Config directory.
 #   Please provide the name of the file that you renamed your config file to
 #   ex: config_file_name = 'ur5.config'
-config_file_name = 'relaxedIK.config'
+config_file_name = 'ob1_arm_relaxedIK.config'
 ######################################################################################################
 
 
